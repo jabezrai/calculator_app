@@ -6,8 +6,8 @@ ans = 0
 def click(action):
     global reset_display,ans
 
-    current = display.get() #variable for storing information input recently
-    button_txt = action.widget["text"] #variables storing the button clicked
+    current = display.get()  # Stores the current expression in the display
+    button_txt = action.widget["text"]  # Gets the text of the clicked button
 
     #assigning C to clear entry
     if button_txt == "C":
@@ -15,7 +15,7 @@ def click(action):
         display.insert(tk.END, '0')
         reset_display = False
 
-    #assigning % as /100 to present integers as percentage in decimals
+    # Evaluates the expression and displays the result when = is clicked
     elif button_txt == "=":
         try:
             expression = current.replace('%','/100')
@@ -25,13 +25,14 @@ def click(action):
             display.insert(tk.END, str(result))
             reset_display = True
 
-    #catches errors during calculation and displays "error" instead of letting the error interrupt the program.
+        # Catches calculation errors and displays "error"
         except Exception:
             display.delete(0, tk.END)
             display.insert(tk.END, 'error')
             reset_display = True
 
-    elif button_txt == 'Ans':
+    # Displays the previous answer when Ans is clicked
+    elif button_txt == 'ans':
         display.delete(0, tk.END)
         display.insert(tk.END, str(ans))
 
@@ -42,7 +43,7 @@ def click(action):
             current = ''
             reset_display = False
 
-        #prevents displaying 000 in entry
+        # Prevents unnecessary leading zeros
         if current == '0':
             current = ''
 
@@ -61,7 +62,7 @@ def click(action):
 
 
 
-#importing GUI
+# Creates the calculator window
 root = tk.Tk()
 root.configure(bg='gray25')
 root.title("Calculator")
@@ -88,7 +89,8 @@ buttons= [['C','(',')','/'],
 #clickable button function
 for i in range(len(buttons)):
     for j in range(len(buttons[i])):
-        if i == 0 or j == 3:   #colour for buttons boarder and text
+        # colour for buttons boarder and text
+        if i == 0 or j == 3:
             bg_colour = 'cornsilk3'
             fg_colour = 'black'
         else:
