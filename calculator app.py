@@ -32,7 +32,7 @@ def click(action):
             reset_display = True
 
     # Displays the previous answer when Ans is clicked
-    elif button_txt == 'ans':
+    elif button_txt == 'Ans':
         display.delete(0, tk.END)
         display.insert(tk.END, str(ans))
 
